@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "secure-json-parse": "^4.1.1"
+  }
+}
