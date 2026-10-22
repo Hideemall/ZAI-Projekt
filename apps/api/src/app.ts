@@ -5,6 +5,7 @@ import { authRoutes } from "./routes/auth.js";
 import { healthRoutes } from "./routes/health.js";
 import { seriesRoutes } from "./routes/series.js";
 import { sensorRoutes } from "./routes/sensors.js";
+import { measurementRoutes } from "./routes/measurements.js";
 
 export function buildApp(): FastifyInstance {
   // coerceTypes: false, żeby liczba w polu tekstowym nie była cicho zamieniana na string.
@@ -15,5 +16,6 @@ export function buildApp(): FastifyInstance {
   app.register(authRoutes, { prefix: "/api/auth" });
   app.register(seriesRoutes, { prefix: "/api/series" });
   app.register(sensorRoutes, { prefix: "/api/sensors" });
+  app.register(measurementRoutes, { prefix: "/api/measurements" });
   return app;
 }
