@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "start": "tsx src/index.ts",
+    "seed": "tsx src/seed.ts",
     "build": "tsc"
   },
   "devDependencies": {

@@ -23,7 +23,7 @@ export const USAGE = `Usage: npm start -- [options]
   --live             send without timestamp (server time) instead of backdated data`;
 
 const MODES: readonly string[] = ["random", "sine", "range"];
-
+export const normalizeUrl = (raw: string): string => new URL(raw).href.replace(/\/(api\/?)?$/, "");
 // parseArgs uznaje "-20" za opcję; sklejamy "--min" "-20" w "--min=-20".
 function joinNegativeValues(argv: string[]): string[] {
   const out: string[] = [];
@@ -80,8 +80,7 @@ export function parseConfig(argv: string[], env: NodeJS.ProcessEnv): Config | nu
   if (intervalSec <= 0) throw new Error("--interval must be > 0");
   if (min >= max) throw new Error("--min must be less than --max");
 
-  const rawUrl = values.url ?? env.ZAI_API_URL ?? "http://localhost:3000";
-  const url = new URL(rawUrl).href.replace(/\/(api\/?)?$/, "");
+  const url = normalizeUrl(values.url ?? env.ZAI_API_URL ?? "http://localhost:3000");
 
   return { url, apiKey, count, intervalSec, mode: mode as Mode, min, max, live };
 }
