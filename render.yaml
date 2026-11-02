@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: zai-iot
+    runtime: node
+    plan: free
+    region: frankfurt
+    rootDir: apps/api
+    buildCommand: npm ci --include=dev && npm run build
+    startCommand: npm run migrate:prod && npm run seed:admin:prod && npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: DATABASE_URL
+        sync: false
+      - key: ADMIN_USERNAME
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
