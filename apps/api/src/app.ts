@@ -13,7 +13,7 @@ export function buildApp(): FastifyInstance {
   const app = Fastify({
     logger: true,
     trustProxy: true, // Render terminuje HTTPS na proxy
-    ajv: { customOptions: { coerceTypes: false } },
+    ajv: { customOptions: { coerceTypes: false, allowUnionTypes: true } },
   });
   app.register(helmet, {
     contentSecurityPolicy: {
